@@ -7,8 +7,12 @@ const {
     updateContact,
     deleteContact
 } = require("../controllers/contactController");
+const validateToken = require("../middleware/validateTokenHandler");
 
 //this will be the route
+
+//this will validate each login req, 
+router.use(validateToken);
 
 //get all contact use get request
 router.route("/").get(getContacts);
