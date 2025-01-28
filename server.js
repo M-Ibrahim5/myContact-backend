@@ -1,13 +1,21 @@
 const express = require("express");
+const connectDb = require("./config/dbConnection")
+const errorHandler = require("./middleware/errorHandler");
 const dotenv = require("dotenv").config();
+
+// connect to database
+connectDb();
 
 const app = express();
 
 const port = process.env.PORT || 5000;
 
-app.get("/api/contacts", (req,res) => {
-    res.status(200).json({message: "Get all contacts"});
-});
+//middleware for parsing string from client to server
+app.use(express.json());
+// middleware for express
+app.use("/api/contacts", require("./routes/contactRoutes"));
+//use custom middleware that we created
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`server is running opn port ${port}`);
