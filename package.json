@@ -1,0 +1,28 @@
+{
+  "name": "mycontact-backend-api",
+  "version": "1.0.0",
+  "description": "This is express project for my contact backend api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M-Ibrahim5/Contact-Management-App.git"
+  },
+  "author": "Muhammad Ibrahim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/M-Ibrahim5/Contact-Management-App/issues"
+  },
+  "homepage": "https://github.com/M-Ibrahim5/Contact-Management-App#readme",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
