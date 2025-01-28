@@ -14,6 +14,8 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 // middleware for express
 app.use("/api/contacts", require("./routes/contactRoutes"));
+// middleware for login/signup  users
+app.use("/api/users", require("./routes/userRoutes"));
 //use custom middleware that we created
 app.use(errorHandler);
 
