@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel")
 const bcrypt = require("bcrypt")
-const jwt = require("../models/userModel")
+const jwt = require("jsonwebtoken")
 
 //@desc Register user
 //@route Post api/user/register
@@ -38,7 +38,7 @@ const registerUser = asyncHandler(async(req,res) => {
 });
 
 //@desc login user
-//@route Post api/user/register
+//@route Post api/user/login
 //@access public
 const loginUser = asyncHandler(async(req,res) => {
     const {email, password} = req.body;
@@ -50,7 +50,7 @@ const loginUser = asyncHandler(async(req,res) => {
     const user = await User.findOne({email});
     //compare password to hashed password
     if(user && (await bcrypt.compare(password, user.password))){
-        const accesTokenm = jwt.sign({
+        const accesToken = jwt.sign({
             user:{
                 username: user.username,
                 email: user.email,
@@ -58,9 +58,9 @@ const loginUser = asyncHandler(async(req,res) => {
             }
         },
         process.env.ACCESS_TOKEN_SECRET,
-        {expiresIn:"2m"}
+        {expiresIn:"1m"}
     ) 
-        res.status(200).json({accessToken});
+        res.status(200).json({accesToken});
     }
     else{
         res.status(401);
